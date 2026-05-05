@@ -1,0 +1,775 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #6b7280;
+  --surface: #f5f5f5;
+  --border: #e5e7eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111111;
+    --text: #eeeeee;
+    --surface: #1a1a1a;
+    --muted: #9ca3af;
+    --border: #2a2a2a;
+  }
+}
+
+html.dark {
+  --bg: #111111;
+  --text: #eeeeee;
+  --muted: #9ca3af;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+}
+
+html.light {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #6b7280;
+  --surface: #f5f5f5;
+  --border: #e5e7eb;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg);
+  gap: 3rem;
+}
+
+header {
+  background-color: var(--surface);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+header nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.userMenu {
+  position: relative;
+  cursor: pointer;
+}
+
+.themeIcon {
+  transition: filter 0.2s ease;
+}
+
+html.dark .themeIcon {
+  filter: brightness(0) invert(1);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 20%;
+
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  padding: 0.5rem;
+  min-width: 120px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown button {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text);
+}
+
+.dropdown button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.about {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.about:hover {
+  color: #3b82f6;
+}
+
+.username {
+  color: var(--text);
+  background-color: var(--surface);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.aboutContainer {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+}
+
+.aboutContainer h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.aboutContainer h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0.5rem;
+}
+
+.aboutContainer p {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+.aboutSection {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.aboutSection h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.aboutSection p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.aboutContainer ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.aboutContainer ul li {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+.aboutContainer ul li strong {
+  color: var(--text);
+}
+
+.aboutClosing {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text) !important;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.articlesContainer {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  gap: 1rem;
+}
+
+.article {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.article:active {
+  transform: translateY(0px);
+  transition: all 0.05s ease-in-out;
+}
+
+
+.articleBody {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Show only 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.articleLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.articlePage {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.articlePage h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.articlePage > p {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 2px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.commentsContainer h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.eachComment {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.eachComment:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.eachComment .username {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.publishedDate,
+.editDate {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.commentBody {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-top: 0.25rem;
+}
+
+.commentsContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.commentsContainer textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 100px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.commentsContainer textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.commentSubmitBtn {
+  align-self: flex-end;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+}
+
+.commentSubmitBtn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.commentSubmitBtn:active:not(:disabled) {
+  transform: translateY(0px);
+}
+
+.commentSubmitBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.55);
+  backdrop-filter: blur(4px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+  padding: 1rem;
+}
+
+
+.modal {
+  width: 100%;
+  max-width: 420px;
+
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  animation: modalFade 0.18s ease-out;
+}
+
+
+.modal h3 {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.modal p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+
+.modalButtons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+
+.modal button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    opacity 0.2s ease;
+}
+
+.modal button:hover {
+  transform: translateY(-1px);
+}
+
+.modal button:active {
+  transform: translateY(0);
+}
+
+
+.modalLoginBtn {
+  flex: 1;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+}
+
+
+.modalRegisterBtn {
+  flex: 1;
+  background-color: var(--bg);
+  border: 1px solid var(--border) !important;
+  color: var(--text);
+}
+
+
+.modalCloseBtn {
+  background: transparent;
+  color: var(--muted);
+  padding: 0.25rem;
+  align-self: center;
+}
+
+.modalCloseBtn:hover {
+  color: var(--text);
+}
+
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.deleteBtn {
+  color: red;
+}
+
+.authContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.authContainer form {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.authContainer label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+.authContainer input {
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.authContainer input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.authSubmitBtn {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+}
+
+.authSubmitBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.authSubmitBtn:active {
+  transform: translateY(0px);
+}
+
+.authContainer p {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+.authContainer p a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.authContainer p a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+footer p:hover {
+  color: #3b82f6;
+}
+
+@media (max-width: 1024px) {
+  .articlesContainer,
+  .articlePage,
+  .aboutContainer {
+    width: 85vw;
+  }
+
+  header {
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+  }
+
+  header nav {
+    gap: 1rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  #root {
+    gap: 1.5rem;
+  }
+
+  
+  header {
+    padding: 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .name {
+    font-size: 1.25rem;
+  }
+
+  header nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .username {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  
+  .articlesContainer,
+  .articlePage,
+  .aboutContainer {
+    width: 95%;
+  }
+
+  .article {
+    padding: 1.25rem;
+  }
+
+  .articlePage {
+    padding: 1rem 0;
+  }
+
+  .articlePage h1,
+  .aboutContainer h1 {
+    font-size: 1.5rem;
+  }
+
+  .aboutContainer h2 {
+    font-size: 1.1rem;
+  }
+
+  
+  .eachComment {
+    padding: 0.85rem 1rem;
+  }
+
+  .commentSubmitBtn {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  
+  .authContainer {
+    padding: 1rem;
+  }
+
+  .authContainer form {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  
+  .modal {
+    width: 90%;
+    max-width: 420px;
+    padding: 1.5rem;
+  }
+
+  .modalButtons {
+    flex-direction: column;
+  }
+
+  .modalLoginBtn,
+  .modalRegisterBtn,
+  .modalCloseBtn {
+    width: 100%;
+  }
+
+  
+  .dropdown {
+    left: auto;
+    right: 0;
+  }
+
+  footer {
+    padding: 1.25rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .article,
+  .aboutSection,
+  .eachComment {
+    padding: 1rem;
+  }
+
+  .articlePage h1,
+  .aboutContainer h1 {
+    font-size: 1.3rem;
+  }
+
+  .aboutContainer p,
+  .aboutContainer li,
+  .articlePage > p,
+  .commentBody {
+    font-size: 0.9rem;
+  }
+
+  .name {
+    font-size: 1.1rem;
+  }
+}
